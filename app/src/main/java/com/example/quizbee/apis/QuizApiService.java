@@ -1,4 +1,6 @@
-package com.example.quizbee;
+package com.example.quizbee.apis;
+
+import com.example.quizbee.Models.QuizBee;
 
 import java.util.List;
 
