@@ -16,6 +16,8 @@ import java.util.List;
 
 public class QuestionsAdapter extends RecyclerView.Adapter<QuestionViewHolder> {
 
+    public int currentQuestionPosition = 0;
+
     List<Question> questions;
 
     OnItemActionListener onItemActionListener;
@@ -42,9 +44,15 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionViewHolder> {
      Question question = questions.get(position);
      holder.binding.numberTxt.setText(String.valueOf(question.getNumber()));
      holder.binding.getRoot().setOnClickListener(v -> {
-         holder.binding.numberTxt.setTextColor(Color.parseColor("#D61D1D"));
-         onItemActionListener.OnItemClicked(question);
+         currentQuestionPosition = position;
+         notifyDataSetChanged();
+         onItemActionListener.OnItemClicked((question));
      });
+     if (currentQuestionPosition == position) {
+         holder.binding.numberTxt.setTextColor(Color.parseColor("#D61D1D"));
+     } else  {
+         holder.binding.numberTxt.setTextColor(Color.parseColor("#161717"));
+     }
     }
 
     @Override
